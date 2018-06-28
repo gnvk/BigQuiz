@@ -1,0 +1,49 @@
+.defaultAnswerBox {
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+    -fx-background-color: radial-gradient(center 50% 50% , radius 70% , rgb(2, 3, 5, 0.9), rgb(6, 22, 35, 0.5));
+    -fx-background-radius: 5;
+}
+
+.hintedAnswerBox {
+    -fx-border-color: rgb(152, 251, 152, 0.9);
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+
+.selectedAnswerBox {
+    -fx-border-color: rgb(0, 191, 255, 0.9);
+    -fx-border-radius: 5;
+    -fx-border-width: 3;
+}
+
+.correctAnswerBox {
+    -fx-background-color: radial-gradient(center 50% 50% , radius 70% , rgb(34, 139, 34, 0.9), rgb(6, 22, 35, 0.5));
+}
+
+.wrongAnswerBox {
+    -fx-background-color: radial-gradient(center 50% 50% , radius 70% , rgb(178, 34, 34, 0.9), rgb(6, 22, 35, 0.5));
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.mainPane {
+    -fx-font-size: 36;
+    -fx-padding: 10px;
+    -fx-background-image: url("images/space.jpg");
+}
+
+.oneRemains {
+    -fx-background-image: url("images/space-blue.jpg");
+}
+
+.allCorrect {
+    -fx-background-image: url("images/space-green.jpg");
+}
+
+.allWrong {
+    -fx-background-image: url("images/space-red.jpg");
+}
