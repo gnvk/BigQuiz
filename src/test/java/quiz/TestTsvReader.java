@@ -13,7 +13,7 @@ public class TestTsvReader {
     public void testReadTsv() throws URISyntaxException {
         InputStream inputStream = getClass().getResourceAsStream("/questions.tsv");
         List<List<String>> result = TsvReader.readTsv(inputStream);
-        Assert.assertEquals("Tudod, hogy nincs bocsánat", result.get(2).get(2));
+        Assert.assertEquals("Tas", result.get(1).get(5));
     }
 
 }
