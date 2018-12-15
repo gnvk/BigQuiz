@@ -83,7 +83,7 @@ public class QuizController {
         ANSWERS_SHOWN,
         ROUND_OVER
     };
-    GameState gameState = GameState.QUESTION_SHOWN;
+    private GameState gameState = GameState.QUESTION_SHOWN;
 
     public QuizController() {
         InputStream questionsStream = null;
@@ -121,11 +121,11 @@ public class QuizController {
          };
     }
 
-    public void focus() {
+    void focus() {
         mainPane.requestFocus();
     }
 
-    public void showQuestion() {
+    void showQuestion() {
         for (VBox answerBox : answerBoxes) {
             ObservableList<String> styles = answerBox.getStyleClass();
             styles.clear();
@@ -137,7 +137,7 @@ public class QuizController {
         gameState = GameState.QUESTION_SHOWN;
     }
 
-    public void showAnswers() {
+    private void showAnswers() {
         for (int i = 0; i < 16; i++) {
             if (currentQuestion.getAnswers().size() > i) {
                 answerLabels[i].setText(currentQuestion.getAnswer(i));
@@ -199,7 +199,7 @@ public class QuizController {
         }
     }
 
-    public void setCurrentQuestionIndex(int index) {
+    void setCurrentQuestionIndex(int index) {
         currentQuestionIndex = index;
         currentQuestion = questions.get(currentQuestionIndex);
     }
@@ -237,7 +237,7 @@ public class QuizController {
         }
     }
 
-    public void removeStyles() {
+    private void removeStyles() {
         ObservableList<String> mainStyles = mainPane.getStyleClass();
         mainStyles.clear();
         mainStyles.addAll("mainPane");
@@ -246,7 +246,7 @@ public class QuizController {
         }
     }
 
-    public void previousQuestion() {
+    private void previousQuestion() {
         removeStyles();
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
@@ -256,7 +256,7 @@ public class QuizController {
         }
     }
 
-    public void nextQuestion() {
+    private void nextQuestion() {
         removeStyles();
         if (currentQuestionIndex + 1 < questions.size()) {
             currentQuestionIndex++;
@@ -269,21 +269,21 @@ public class QuizController {
         }
     }
 
-    public void selectAnswer(int answer) {
+    private  void selectAnswer(int answer) {
         ObservableList<String> styles = answerBoxes[answer].getStyleClass();
         if (!styles.contains("selectedAnswerBox")) {
             styles.add("selectedAnswerBox");
         }
     }
 
-    public void deselectAnswer(int answer) {
+    private void deselectAnswer(int answer) {
         ObservableList<String> styles = answerBoxes[answer].getStyleClass();
         if (styles.contains("selectedAnswerBox")) {
             styles.remove("selectedAnswerBox");
         }
     }
 
-    public void correctAnswer(int answer) {
+    private void correctAnswer(int answer) {
         ObservableList<String> styles = answerBoxes[answer].getStyleClass();
         if (styles.contains("selectedAnswerBox")) {
             styles.remove("selectedAnswerBox");
@@ -293,7 +293,7 @@ public class QuizController {
         }
     }
 
-    public void wrongAnswer(int answer) {
+    private void wrongAnswer(int answer) {
         ObservableList<String> styles = answerBoxes[answer].getStyleClass();
         if (styles.contains("selectedAnswerBox")) {
             styles.remove("selectedAnswerBox");
@@ -303,7 +303,7 @@ public class QuizController {
         }
     }
 
-    public void hintThreeAnswers() {
+    private void hintThreeAnswers() {
         List<String> hints = currentQuestion.hint(selectedAnswers);
         for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
             if (hints.contains(currentQuestion.getAnswer(i))) {
@@ -312,7 +312,7 @@ public class QuizController {
         }
     }
 
-    public void setStage(Stage stage) {
+    void setStage(Stage stage) {
         this.stage = stage;
     }
 }
