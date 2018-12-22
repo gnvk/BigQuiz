@@ -30,10 +30,13 @@
     -fx-text-fill: white;
 }
 
+.rootPane {
+    -fx-background-image: url("images/space.jpg");
+}
+
 .mainPane {
     -fx-font-size: 36;
     -fx-padding: 10px;
-    -fx-background-image: url("images/space.jpg");
 }
 
 .oneRemains {

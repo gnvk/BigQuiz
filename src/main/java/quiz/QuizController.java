@@ -20,12 +20,17 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Timer;
 
 public class QuizController {
 
+    public Pane rootPane;
     public GridPane mainPane;
 
     public Label questionLabel;
@@ -77,6 +82,8 @@ public class QuizController {
     private int currentQuestionIndex = 0;
     private Integer selectedAnswer = null;
     private List<String> selectedAnswers = new ArrayList<>();
+
+    private Timer timeLeftTimer;
 
     enum GameState {
         QUESTION_SHOWN,
@@ -188,12 +195,12 @@ public class QuizController {
             selectedAnswer = null;
 
             if (currentQuestion.areAllWrongAnswersFound(selectedAnswers)) {
-                mainPane.getStyleClass().add("allWrong");
+                rootPane.getStyleClass().add("allWrong");
                 gameState = GameState.ROUND_OVER;
             } else if (currentQuestion.oneCorrectAnswerRemaining(selectedAnswers)) {
-                mainPane.getStyleClass().add("oneRemains");
+                rootPane.getStyleClass().add("oneRemains");
             } else if (currentQuestion.areAllCorrectAnswersFound(selectedAnswers)) {
-                mainPane.getStyleClass().add("allCorrect");
+                rootPane.getStyleClass().add("allCorrect");
                 gameState = GameState.ROUND_OVER;
             }
         }
@@ -234,15 +241,38 @@ public class QuizController {
                     hintThreeAnswers();
                 }
                 break;
+            case T:
+                if (gameState == GameState.ANSWERS_SHOWN && transitions.isEmpty() && timeLeftTimer == null) {
+                    TimeLeftCounter timeLeftCounter = new TimeLeftCounter(10, mainPane);
+                    timeLeftTimer = new Timer();
+                    timeLeftTimer.schedule(timeLeftCounter, 0, 1000);
+                }
+                break;
+            case R:
+                resetTimer();
+                break;
         }
     }
 
     private void removeStyles() {
-        ObservableList<String> mainStyles = mainPane.getStyleClass();
-        mainStyles.clear();
-        mainStyles.addAll("mainPane");
+        HashMap<String, Pane> panes = new HashMap<>();
+        panes.put("rootPane", rootPane);
+        panes.put("mainPane", mainPane);
+        for (Map.Entry<String, Pane> pane : panes.entrySet()) {
+            ObservableList<String> styles = pane.getValue().getStyleClass();
+            styles.clear();
+            styles.addAll(pane.getKey());
+        }
         for (Transition transition : transitions) {
             transition.stop();
+        }
+    }
+
+    private void resetTimer() {
+        mainPane.setStyle("-fx-background-color: transparent");
+        if (timeLeftTimer != null) {
+            timeLeftTimer.cancel();
+            timeLeftTimer = null;
         }
     }
 
@@ -274,6 +304,7 @@ public class QuizController {
         if (!styles.contains("selectedAnswerBox")) {
             styles.add("selectedAnswerBox");
         }
+        resetTimer();
     }
 
     private void deselectAnswer(int answer) {
