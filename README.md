@@ -34,6 +34,16 @@ We suggest the following help tokens introduced after 3 questions:
     * There are at least two correct answers remaining on the board (the background is not blue)
   * When used, the computer randomly highlights 3 answers on the board.
     Two of which are correct, and one incorrect.
+* [Introduced after question no. 9] Stealing
+  * Each player is given 2 stealing tokens
+  * They can be used when
+    * The player is not active
+    * There is exactly one remaining correct answer on the board (the background is blue)
+  * When used, the player shouts "STEAL" and provides an answer (before the active player does).
+    If the given answer is correct, the stealing player gains an additional life token.
+    If it's incorrect, they lose one.
+  * In any case, the player next to the stealing player gets the active player token and
+    has to provide the next answer
 * [Introduced when the first player is eliminated] The help of the eliminated players
   * Each remaining player is given 2 tokens
   * They can be used anytime when the player is active
