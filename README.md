@@ -99,6 +99,7 @@ of the defult - at the moment Hungarian - test suite). To navigate through the g
 * to use the computer help, press S
 * to start the timer, press T
 * to reset the timer, press R
+* if for some reason, you want to completely skip a question, press the right arrow key
 
 ### Build from source
 
