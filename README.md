@@ -75,6 +75,7 @@ The format must be the following:
 
 ### Run the program
 
+You need [Java](https://java.com/en/download/) installed in your compueter.
 To run the program download the jar file from the [releases page](https://github.com/gnvk/BigQuiz/releases) 
 or build it from source, and simply run it by double clicking or typing
 
