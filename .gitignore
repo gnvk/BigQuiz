@@ -3,6 +3,11 @@
 *.iml
 *.iws
 
+# Java
+.classpath
+.project
+.settings/
+
 # Mac
 .DS_Store
 
