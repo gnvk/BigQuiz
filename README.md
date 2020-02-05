@@ -75,8 +75,8 @@ The format must be the following:
 
 ### Run the program
 
-To run the program download (or build) the jar file and simply run it by double
-clicking it or typing
+To run the program download the jar file from the [releases page](https://github.com/gnvk/BigQuiz/releases) 
+or build it from source, and simply run it by double clicking or typing
 
 ```shell
 java -jar BigQuiz-0.1.jar
